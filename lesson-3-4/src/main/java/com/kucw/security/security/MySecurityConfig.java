@@ -29,8 +29,9 @@ public class MySecurityConfig {
                 .formLogin(Customizer.withDefaults())
 
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/welcome", "/register").permitAll()
+                        .requestMatchers("/register").permitAll()
                         .requestMatchers("/hello").authenticated()
+                        .requestMatchers("/welcome").hasRole("ADMIN")
                         .anyRequest().denyAll()
                 )
 
