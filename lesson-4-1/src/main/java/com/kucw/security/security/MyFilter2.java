@@ -12,7 +12,16 @@ public class MyFilter2 extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         System.out.println("Execute Filter 2");
-        //Pass request and response to next filter
-        filterChain.doFilter(request,response);
+        String url = request.getRequestURI();
+
+        if(url.equals("/hello")){
+            System.out.println("Request to the path /hello are able to pass through");
+            //Pass request and response to next filter
+            filterChain.doFilter(request,response);
+        }else{
+            System.out.println("Not allow to pass through");
+            //Set up a response to frontend
+            response.setStatus(500);
+        }
     }
 }
