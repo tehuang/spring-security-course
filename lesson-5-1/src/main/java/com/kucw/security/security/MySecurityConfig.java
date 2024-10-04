@@ -59,7 +59,7 @@ public class MySecurityConfig {
         config.setAllowedHeaders(List.of("*")); //後端允許的request header有哪些
         config.setAllowedMethods(List.of("*")); //後端允許的http method有哪些 e.g. "GET", "POST"
         //config.setAllowCredentials(true);  //後端是否允許前端帶上cookie
-        config.setMaxAge(3600L);
+        config.setMaxAge(3600L); //設定Preflight請求的結果，可以被瀏覽器cache幾秒 e.g. 3600秒
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",config);
