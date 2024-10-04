@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity (debug = true)
 public class MySecurityConfig {
 
     @Bean
@@ -44,7 +44,7 @@ public class MySecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(new MyFilter2(), BasicAuthenticationFilter.class)
-
+                .addFilterBefore(new MyFilter1(), BasicAuthenticationFilter.class)
                 .build();
     }
 }
