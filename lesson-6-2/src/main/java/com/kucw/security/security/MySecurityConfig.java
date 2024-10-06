@@ -46,11 +46,13 @@ public class MySecurityConfig {
                 .csrf(csrf ->csrf
                                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                                 .csrfTokenRequestHandler(createCsrHandler())
+                                .ignoringRequestMatchers("/register","/userlogin")
                         )
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
 
                 .authorizeHttpRequests(request -> request
+                        .requestMatchers("/register","/userLogin").permitAll()
                         .anyRequest().authenticated()
                 )
 
